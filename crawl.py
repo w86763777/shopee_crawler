@@ -45,8 +45,6 @@ class URLTransform:
         jsonobj['link'] = self.URL_PATTERN.format(**jsonobj)
         return jsonobj
 
-# ROOT = "https://shopee.tw/api/v2/search_items/?by=price&fe_categoryids=1563&limit=50&newest=8050&order=asc&page_type=search&price_max=3000&version=2"
-
 
 if __name__ == '__main__':
     requests_dir = './requests'
@@ -69,11 +67,11 @@ if __name__ == '__main__':
         'user-agent': 'Mozilla/5.0 (Macintosh Intel Mac OS X 10_13_4) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) '
                       'Chrome/66.0.3359.181 Safari/537.36',
-        "if-none-match-": "55b03-932dd7bcde62654ef397c73b79016c8b",
     }
     items_counter = 0
     os.makedirs(requests_dir, exist_ok=True)
-    with trange(price_start, price_end, price_tick, dynamic_ncols=True) as pbar:
+    with trange(price_start, price_end, price_tick,
+                dynamic_ncols=True) as pbar:
         for price in pbar:
             price_min = price
             price_max = price + price_tick
